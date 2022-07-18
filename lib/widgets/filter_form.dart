@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lex_res/design.dart';
 import 'package:lex_res/widgets/widget_spe.dart';
 import '../cases/casesdata.dart';
 import 'filtered.dart';
@@ -19,6 +20,9 @@ class _FilterFormState extends State<FilterForm> {
   TextEditingController _casetype = TextEditingController();
   TextEditingController _courtname = TextEditingController();
   TextEditingController _caseno = TextEditingController();
+  TextEditingController _judgename = TextEditingController();
+  TextEditingController _actname = TextEditingController();
+  
 
   var court_list = [
     "Select a court",
@@ -95,10 +99,10 @@ class _FilterFormState extends State<FilterForm> {
     List<LawCase> filter = [];
     filter.addAll(LawCases.cases);
 
-    return Scaffold(
+    return Container(
 
 
-      body: Center(
+      child: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -109,57 +113,17 @@ class _FilterFormState extends State<FilterForm> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _caseno,
+                    controller: _actname,
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Enter Case No.'),
+                        border: OutlineInputBorder(), labelText: 'Act name'),
                   ),
                 ),
               ),
               SizedBox(
-                height: 25,
+                height: 1,
               ),
 
-
-                  Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2
-                            ,child: SizedBox(width: 30,)),
-                        Expanded(
-                          flex: 12,
-                          child: DropdownButton(
-                              isExpanded:true,
-                            items: court_list.map((e) {
-                              return DropdownMenuItem(
-                                child: Text(e),
-                                value: e,
-                              );
-                            }).toList(),
-                            onChanged: (String? newcourtselected) {
-                              setState(() {
-                                this.sel_court = newcourtselected!;
-                                print("The value of variable 'sel_court' is being changed to : ");
-                                print(sel_court);
-                              });
-                            },
-                            value: sel_court,
-
-                            // value: sel_court,
-                          ),
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: SizedBox(width: 30,)),
-                      ],
-                    ),
-                  ),
-
-              SizedBox(
-                height: 50,
-              ),
-
-
+              //--------------------------Case Type DropDown starts---------------
 
               Row(
                 children: [
@@ -190,15 +154,96 @@ class _FilterFormState extends State<FilterForm> {
                 ],
 
               ),
-              SizedBox(
-                height: 50,
+
+              //------------------------------Case type dropdown ends-------------------------
+
+
+              //-------------------------------Courtname dropdown starts----------------------------
+
+              Container(
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 2
+                        ,child: SizedBox(width: 30,)),
+                    Expanded(
+                      flex: 12,
+                      child: DropdownButton(
+                        isExpanded:true,
+                        items: court_list.map((e) {
+                          return DropdownMenuItem(
+                            child: Text(e),
+                            value: e,
+                          );
+                        }).toList(),
+                        onChanged: (String? newcourtselected) {
+                          setState(() {
+                            this.sel_court = newcourtselected!;
+                            print("The value of variable 'sel_court' is being changed to : ");
+                            print(sel_court);
+                          });
+                        },
+                        value: sel_court,
+
+                        // value: sel_court,
+                      ),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: SizedBox(width: 30,)),
+                  ],
+                ),
               ),
+              //---------------------------------Courtname dropdown ends--------------------------------
+
+              Container(
+                height: 50 ,
+                width: 300,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _judgename,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: 'Judge Name'),
+                  ),
+                ),
+              ),
+
+
+
+
+
+
+
+              Container(
+                height: 50 ,
+                width: 300,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _caseno,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: 'Case Number'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 1,
+              ),
+
+
+
+
+
               Container(
                   width: 150,
-                  child: ElevatedButton(onPressed: _show, child: Text(datestring))),
-              SizedBox(
-                height: 50,
-              ),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: colorbutton
+                      ),
+
+                      onPressed: _show, child: Text(datestring))),
+
 
 
 
@@ -206,16 +251,20 @@ class _FilterFormState extends State<FilterForm> {
               Container(
                 width: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: colorbutton
+                  ),
+
                     onPressed: () {
                       // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FilteredCases(court_name: _courtname.text, person_A: _personA.text, person_B: _personB.text, case_type : _casetype.text)));
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => FilteredCases(
-                              court_name: "SC",
-                              caseno: "Kajal",
-                              date: "Vivek",
-                              case_type: "child marriage")));
+                              court_name: sel_court,
+                              caseno: _caseno.text,
+                              date: datestring,
+                              case_type: sel_casetype, judgename: _judgename.text , act_name:_actname.text,)));
                     },
-                    child: Text('Filter')),
+                    child: Text('Search')),
               ),
             ],
           ),

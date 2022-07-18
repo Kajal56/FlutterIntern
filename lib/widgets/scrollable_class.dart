@@ -16,8 +16,8 @@ class _ScrollableWidgetState extends State<ScrollableWidget> {
   Widget build(BuildContext context) {
 
     return Container(
-      height: 300,
-      width: 100,
+      height: 500,
+      width: 500,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         // border: Bor,

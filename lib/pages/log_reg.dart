@@ -27,13 +27,19 @@ class _LogRegState extends State<LogReg> {
   TextEditingController _occupation = TextEditingController();
   TextEditingController _city = TextEditingController();
   TextEditingController _gender = TextEditingController();
+  // var professionlist = [
+  //   'Select your profession',
+  //   'Undergrad/Postgrad/PhD Law Student',
+  //   'Lawyer/Advocate/Counsel/Solicitor',
+  //   'Judge','Law Firm/Department',
+  //   'Business Owner/Other Professional',
+  //   'Others'
+  // ];
   var professionlist = [
     'Select your profession',
-    'Undergrad/Postgrad/PhD Law Student',
-    'Lawyer/Advocate/Counsel/Solicitor',
-    'Judge','Law Firm/Department',
-    'Business Owner/Other Professional',
-    'Others'
+    'Law Proffessional',
+    'Student',
+    'Other'
   ];
   var genderlist=['Male', 'Female','Select gender','Prefer not to say'];
   String sel_gender='Select gender';
@@ -44,7 +50,8 @@ class _LogRegState extends State<LogReg> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello, Listeners'),
+        backgroundColor: colorbutton,
+        title: Text('LexRes'),
       ),
       body: Container(
         child: SingleChildScrollView(

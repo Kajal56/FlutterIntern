@@ -7,7 +7,7 @@ import 'package:lex_res/widgets/filterformpassinglist.dart';
 import 'package:lex_res/widgets/widget_spe.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
-import 'pages/audio_play.dart';
+// import 'pages/audio_play.dart';
 import 'pages/search_res.dart';
 import 'pages/register.dart';
 // import '';
@@ -41,10 +41,11 @@ class MyApp extends StatelessWidget {
         '/all':(context)=>HomePage(),
         '/filterform':(context)=>FilterForm(),
         '/' : (context)=> LogReg(),
+
         // '/':(context)=>Exp(),
         '/login' : (context) => LoginPage(),
         '/reg':(context)=>RegisterClass(),
-        '/audio':(context)=>AudioPlayClass(),
+        // '/audio':(context)=>AudioPlayClass(),
         'searchres':(context)=>SearchRes(),
         '/alljudgements': (context)=>HomePage()
         // '/moreInfo' : (context ) => SpeWidget(lawcase: lawcase),

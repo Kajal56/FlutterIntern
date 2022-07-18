@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lex_res/cases/casesdata.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:provider/provider.dart';
-import 'package:audioplayers/src/audio_cache.dart';
+// import 'package:audioplayers/audioplayers.dart';
+// import 'package:provider/provider.dart';
+// import 'package:audioplayers/src/audio_cache.dart';
 import 'package:lex_res/drawer.dart';
 import 'cases_widget.dart';
 

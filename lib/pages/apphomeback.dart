@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lex_res/design.dart';
 import 'package:lex_res/icons/lex_res_icons.dart';
-
 import 'package:lex_res/widgets/BoxWidgets.dart';
-import 'package:lex_res/widgets/filter_form.dart';
 import 'package:lex_res/widgets/scrollable_class.dart';
 
 import 'package:lex_res/widgets/searchbywidget.dart';
-
-import '../widgets/filtered.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({Key? key}) : super(key: key);
@@ -19,8 +15,6 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
-  var audiocategory=["Trending now","Latest","Last weeks", "Frequently head","Select" ];
-  String sel_audcat="Select";
 
   //---------The navigation bar stuff
   String username="Kajal";
@@ -37,9 +31,6 @@ class _AppHomeState extends State<AppHome> {
     });
   }
   //---------The navigation bar stuff ends
-
-
-
 
 
   @override
@@ -118,21 +109,32 @@ class _AppHomeState extends State<AppHome> {
               // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
-                  child: Text('                Welcome '+username+','+'\n What would you like to do ?',
+                  child: Text('Welcome to LexListen',
                     style: TextStyle(
                         fontStyle: FontStyle.normal,
                         fontFamily: 'gfont',
                         color: colorpurple,
                         // fontFamilyFallback: '',
 
-                        fontSize: 15.0,
+                        fontSize: 18.0,
                         height: 1.4,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w600),
                     textAlign: TextAlign.left,
                   ),
                 ),
-
-
+                // SizedBox(
+                //   height: 1.0,
+                // ),
+                Center(
+                  child: Text('Your trusted app for all your Law related references',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12.0,
+                        height: 1.4,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -166,49 +168,15 @@ class _AppHomeState extends State<AppHome> {
 
                   ],
                 ),
-
-
-                FilterForm(),
-
-
-
+                // SizedBox(height: 1,),
+                Center(child: SearchBy()),
                 SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
 
-                Row(
-                  children: [
-                    Icon(
-                      Icons.headset
-                    ),
-                    Text('Listen To')
-                  ],
-                ),
 
-                Container(
-                  padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                  width: 340,
-                  child: DropdownButton(
-                    items: audiocategory.map((e) {
-                      return DropdownMenuItem(
-                        child: Text(
-                          e,
-                          // style: TextStyle(color: Colors.yellowAccent),
-                        ),
-                        value: e,
-                      );
-                    }).toList(),
-                    onChanged: (String? newaud_selected) {
-                      print('someone tried to select');
-                      print(newaud_selected);
-                      // print(value);
-                      setState(() {
-                        this.sel_audcat = newaud_selected!;
-                      });
-                    },
-                    value: sel_audcat,
-                  ),
-                ),
+
+
 
                 Row(
                   children: [
@@ -216,7 +184,7 @@ class _AppHomeState extends State<AppHome> {
                       Icons.local_fire_department_outlined,
                       color: Colors.purple,
                     ),
-                    Text('Follow ',
+                    Text('TRENDING ',
                       style: TextStyle(
                           color: colorgreendark,
                           fontSize: 12.0,
@@ -224,7 +192,7 @@ class _AppHomeState extends State<AppHome> {
                           fontWeight: FontWeight.w600),
                       textAlign: TextAlign.left,
                     ),
-                    Text('trending cases',
+                    Text('NOW!',
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 12.0,
@@ -244,15 +212,67 @@ class _AppHomeState extends State<AppHome> {
                   ),
                 ),
                 //-----------New Widget-------------
-                // MusicApp(),
+
+                SizedBox(
+                  height: 50,
+                ),
+
+                Row(
+                  children: [
+                    Icon(
+                      Icons.headphones,
+                      color: Colors.purple,
+                    ),
+                    Text('LISTEN ',
+                      style: TextStyle(
+                          color: colorgreendark,
+                          fontSize: 12.0,
+                          height: 1.4,
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
 
 
+                    Text('TO OUR RECOMMENDED JUDGEMENTS',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                          height: 1.4,
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
 
+                  ],
+                ),
+                Padding(
+                  // padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsetsDirectional.only(start: 10, end: 10),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BoxWidget(judgementtype: 'Latest', nextpagepath: '/homepage'),
+                      SizedBox(width: 10,),
+                      BoxWidget(judgementtype: 'Last Week', nextpagepath: 'homepage')
+                    ],
+                  ),
+                ),
 
-
-
-
-
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BoxWidget(judgementtype: 'Important', nextpagepath: '/homepage'),
+                    SizedBox(width: 10,),
+                    BoxWidget(judgementtype: 'Frequently heard', nextpagepath: 'homepage')
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
 
 
 
